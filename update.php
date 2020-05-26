@@ -6,10 +6,10 @@ $db = new QueryBuilder(Connect::db());
 $data = [
     "id" => $_GET['id'],
     "title" => $_POST['title'],
-    "content" => $_POST['content'],
+    "content" => $_POST['content']
 ];
 
-$db->updateTask($data);
+$db->update('tasks', $data);
 
 //5 Делаем редирект на главную страницу
 header("Location: /");

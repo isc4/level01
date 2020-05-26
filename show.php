@@ -6,7 +6,7 @@ $db = new QueryBuilder(Connect::db());
 //4.1 Получаем id из GET-запроса
 $id = $_GET['id'];
 
-$task = $db->getTask($id);
+$task = $db->getOne('tasks', $id);
 
 ?>
 <!doctype html>

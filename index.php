@@ -3,7 +3,7 @@
 require 'models/QueryBuilder.php';
 $db = new QueryBuilder(Connect::db());
 
-$tasks = $db->getAllTasks();
+$tasks = $db->getAll('tasks');
 
 
 ?>

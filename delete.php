@@ -8,6 +8,6 @@ $data = [
     "id" => $_GET['id']
 ];
 
-$db->deleteTask($data);
+$db->delete('tasks', $data);
 
 header("Location: /");
