@@ -1,24 +1,12 @@
 <?php
-//4.1 Получает id задачи через GET-запрос
+
+require 'models/QueryBuilder.php';
+$db = new QueryBuilder();
+
+//4.1 Получаем id из GET-запроса
 $id = $_GET['id'];
 
-//1 Подключаемся к базе данных
-$pdo = new PDO("mysql:host=localhost; dbname=learn; charset=utf8;", "root", "secret");
-
-//2 Составляем запрос
-$sql = "SELECT * FROM tasks WHERE id=:id";
-
-//3 Подготавливаем запрос
-$statement = $pdo->prepare($sql);
-
-//4 Подставляем данные в подготовленный запрос
-$statement->bindValue(":id", $id);
-
-//5 Выполняем подготовленный запрос
-$statement->execute();
-
-//6 Вывод данных полученных после выполнения запроса
-$task = $statement->fetch(PDO::FETCH_ASSOC);
+$task = $db->getTask($id);
 
 ?>
 <!doctype html>

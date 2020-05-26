@@ -1,22 +1,3 @@
-<?php
-
-//1 Подключиться к базе данных
-$pdo = new PDO("mysql:host=localhost; dbname=learn; charset=utf8;","root", "secret");
-
-//2 Составить запрос
-$sql = "SELECT * FROM tasks";
-
-//3 Подготовить запрос
-$statement = $pdo->prepare($sql);
-
-//4 Выполнить запрос
-$statement->execute();
-
-//5 Вывести полученный массив данных
-$tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-
-?>
 <!doctype html>
 <html lang="en">
 <head>
