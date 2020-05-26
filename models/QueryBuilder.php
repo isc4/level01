@@ -1,18 +1,23 @@
 <?php
+require 'Connect.php';
 
 class QueryBuilder
 {
-    // Получить все записи
-    function getAllTasks()
-    {
-        //1 Подключиться к базе данных
-        $pdo = new PDO("mysql:host=localhost; dbname=learn; charset=utf8;","root", "secret");
+    private $pdo;
 
+    public function __construct($pdo)
+    {
+        $this->pdo = $pdo;
+    }
+
+    // Получить все записи
+    public function getAllTasks()
+    {
         //2 Составить запрос
         $sql = "SELECT * FROM tasks";
 
         //3 Подготовить запрос
-        $statement = $pdo->prepare($sql);
+        $statement = $this->pdo->prepare($sql);
 
         //4 Выполнить запрос
         $statement->execute();
@@ -22,16 +27,13 @@ class QueryBuilder
     }
 
     //Добавить новую задачу
-    function addTask($data)
+    public function addTask($data)
     {
-        //1 Подключаемся к базе данных
-        $pdo = new PDO("mysql:host=localhost; dbname=learn; charset=utf8;", "root", "secret");
-
         //2 Формируем запрос
         $sql = "INSERT INTO tasks (title, content) VALUES (:title, :content)";
 
         //3 Подготавливаем запрос
-        $statement = $pdo->prepare($sql);
+        $statement = $this->pdo->prepare($sql);
 
         //4 Подставляем данные в подготовленный запрос
         //$statement->bindValue(":title", $_POST['title']);
@@ -43,16 +45,13 @@ class QueryBuilder
     }
 
     //Удаление записи/задачи
-    function deleteTask($data)
+    public function deleteTask($data)
     {
-        //1 Подключаемся к базе данных
-        $pdo = new PDO("mysql:host=localhost; dbname=learn; charset=utf8;", "root", "secret");
-
         //2 формируем запрос
         $sql = "DELETE FROM tasks WHERE id=:id";
 
         //3 Подготавливаем запрос
-        $statement = $pdo->prepare($sql);
+        $statement = $this->pdo->prepare($sql);
 
         //4 Подставляем данные в подготовленный запрос
         //$statement->bindValue(":id", $id);
@@ -62,16 +61,13 @@ class QueryBuilder
     }
 
     //Получаем одну запись
-    function getTask($id)
+    public function getTask($id)
     {
-        //1 Подключаемся к базе данных
-        $pdo = new PDO("mysql:host=localhost; dbname=learn; charset=utf8;", "root", "secret");
-
         //2 Формируем запрос
         $sql = "SELECT * FROM tasks WHERE id=:id";
 
         //3 Подготавливаем запрос
-        $statement = $pdo->prepare($sql);
+        $statement = $this->pdo->prepare($sql);
 
         //4 Подставляем данные в подготовленный запрос
         $statement->bindValue(":id", $id);
@@ -84,16 +80,13 @@ class QueryBuilder
     }
 
     //Обновляем запись
-    function updateTask($data)
+    public function updateTask($data)
     {
-        //1 Подключаемся к базе данных
-        $pdo = new PDO("mysql:host=localhost; dbname=learn; charset=utf8;", "root", "secret");
-
         //2 Формируем запрос
         $sql = "UPDATE tasks SET title=:title, content=:content WHERE id=:id";
 
         //3 Подготавливаем запрос
-        $statement = $pdo->prepare($sql);
+        $statement = $this->pdo->prepare($sql);
 
         //4 Подставляем данные в подготовленный запрос в execute() и выполняем запрос
         $statement->execute($data);

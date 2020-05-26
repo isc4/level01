@@ -1,7 +1,7 @@
 <?php
 
 require 'models/QueryBuilder.php';
-$db = new QueryBuilder();
+$db = new QueryBuilder(Connect::db());
 
 //4.1 Подставляем значения напрямую в execute() вместо bindValue();
 $data = $_POST;

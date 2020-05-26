@@ -1,7 +1,7 @@
 <?php
 
 require 'models/QueryBuilder.php';
-$db = new QueryBuilder();
+$db = new QueryBuilder(Connect::db());
 
 //4.1 Получаем id из GET-запроса
 $id = $_GET['id'];

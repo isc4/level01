@@ -1,7 +1,7 @@
 <?php
 
 require 'models/QueryBuilder.php';
-$db = new QueryBuilder();
+$db = new QueryBuilder(Connect::db());
 
 $data = [
     "id" => $_GET['id'],
